@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Solution</title>
+<link rel="stylesheet" href="http://fellowship.hackbrightacademy.com/tools/homework.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="solution">
+<h1 class="title">Solution</h1>
+
+<div class="section" id="code">
+<h1>Code</h1>
+<pre class="literal-block">
+MELON_COST = 1.00
+
+
+def melon_payment_calculator(payment_data):
+    &quot;&quot;&quot;Calculate cost of melons and determine who has underpaid.&quot;&quot;&quot;
+
+    payment_data = open(payment_data)
+
+    for line in payment_data:
+        order = line.split('|')
+
+        customer_name = order[1]
+        customer_first = customer_name.split(&quot; &quot;)[0]
+        customer_melons = float(order[2])
+        customer_paid = float(order[3])
+
+        customer_expected = customer_melons * MELON_COST
+
+        if customer_expected &lt; customer_paid:
+            print customer_name, &quot;paid %.2f, expected %.2f&quot; % (
+                customer_paid, customer_expected)
+            print customer_first, &quot;has overpaid for their melons.&quot;
+
+        elif customer_expected &gt; customer_paid:
+            print customer_name, &quot;paid %.2f, expected %.2f&quot; % (
+                customer_paid, customer_expected)
+            print customer_first, &quot;has underpaid for their melons.&quot;
+
+
+melon_payment_calculator(&quot;customer-orders.txt&quot;)
+</pre>
+</div>
+<div class="section" id="notes">
+<h1>Notes</h1>
+<ul class="simple">
+<li>Why is <tt class="docutils literal">MELON_COST</tt> defined outside of the function? Why is it in all-caps?
+Think about this -- we'll ask you about it when we review this homework.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
